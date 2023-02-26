@@ -1,5 +1,8 @@
 import Head from 'next/head';
 
+/* 페이지 컴포넌트 */
+import FirstView from '../src/components/views/FirstViewPage';
+
 function Home() {
   return (
     <div>
@@ -7,7 +10,7 @@ function Home() {
         <title>CloneFlix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>처음 들어가면 보이는 화면</div>
+      <FirstView />
     </div>
   );
 }
