@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 /* 페이지 컴포넌트 */
-import FirstView from '../src/components/views/FirstViewPage';
+import FirstView from '../src/views/FirstViewPage';
 
 function Home() {
   return (
