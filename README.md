@@ -1,1 +1,3 @@
-## Next JS + TypeScript Boiler Plate
+## 네브리타임
+
+에브리타임 클론 코딩 프로젝트
