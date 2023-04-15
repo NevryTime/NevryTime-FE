@@ -3,8 +3,16 @@ import 'styled-components';
 
 export interface DefaultTheme {
   colors: {
-    black: string;
+    black1: string;
+    black2: string;
+    black3: string;
     white: string;
-    orange: string;
+    red: string;
+    gray1: string;
+    gray2: string;
+    gray3: string;
+    light_gray1: string;
+    light_gray2: string;
+    light_gray3: string;
   };
 }
