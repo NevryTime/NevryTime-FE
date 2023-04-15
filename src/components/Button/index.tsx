@@ -1,20 +1,28 @@
 import { StyledButton } from './style';
 
-// export const Button = ({ children, name, width, height, onClickFunc, bgColor, fontSize }) => {
-//   return (
-//     <StyledButton
-//       name={name}
-//       width={width}
-//       height={height}
-//       onClick={onClickFunc}
-//       bgColor={bgColor}
-//       fontSize={fontSize}
-//     >
-//       {children}
-//     </StyledButton>
-//   );
-// };
+interface ButtonType {
+  children: React.ReactNode;
+  type?: 'submit' | 'button' | 'reset';
+  width: number;
+  height: number;
+  bgColor?: string;
+  color?: string;
+  onClick?: () => void;
+}
 
-export const Button = () => {
-  return <StyledButton></StyledButton>;
+export const Button = (props: ButtonType) => {
+  const { children, type, width, height, bgColor, color, onClick } = props;
+
+  return (
+    <StyledButton
+      type={type ? type : 'button'}
+      width={width}
+      height={height}
+      bgColor={bgColor ? bgColor : '#c62a18'}
+      color={color ? color : '#ffffff'}
+      onClick={onClick}
+    >
+      {children}
+    </StyledButton>
+  );
 };
