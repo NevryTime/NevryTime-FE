@@ -26,6 +26,7 @@ const colors = {
   gray1: '#d6d6d6',
   gray2: '#e3e3e3',
   gray3: '#a6a6a6',
+  gray4: '#ededed',
   light_gray1: '#f2f2f2',
   light_gray2: '#f9f9f9',
   light_gray3: '#f8f8f8',

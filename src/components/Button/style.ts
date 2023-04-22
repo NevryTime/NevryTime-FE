@@ -5,6 +5,7 @@ interface ButtonType {
   height: number;
   bgColor: string;
   color: string;
+  borderRadius: number;
 }
 
 export const StyledButton = styled.button<ButtonType>`
@@ -14,4 +15,6 @@ export const StyledButton = styled.button<ButtonType>`
   color: ${(props) => (props.color ? `${props.color}` : '#FFFFFF')};
   font-size: 17px;
   border: none;
+  border-radius: ${(props) =>
+    props.borderRadius ? `${props.borderRadius}px` : 0};
 `;
