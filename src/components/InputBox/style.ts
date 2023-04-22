@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface InputBoxType {
   width: number;
   height: number;
+  borderRadius: number;
 }
 
 export const StyledInputBox = styled.input<InputBoxType>`
@@ -16,4 +17,6 @@ export const StyledInputBox = styled.input<InputBoxType>`
     outline: none;
   }
   border: 1px solid ${({ theme }) => theme.colors.gray1};
+  border-radius: ${(props) =>
+    props.borderRadius ? `${props.borderRadius}px` : 0};
 `;

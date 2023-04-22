@@ -5,13 +5,23 @@ interface ButtonType {
   type?: 'submit' | 'button' | 'reset';
   width: number;
   height: number;
+  borderRadius?: number;
   bgColor?: string;
   color?: string;
   onClick?: () => void;
 }
 
 export const Button = (props: ButtonType) => {
-  const { children, type, width, height, bgColor, color, onClick } = props;
+  const {
+    children,
+    type,
+    width,
+    height,
+    bgColor,
+    color,
+    onClick,
+    borderRadius,
+  } = props;
 
   return (
     <StyledButton
@@ -21,6 +31,7 @@ export const Button = (props: ButtonType) => {
       bgColor={bgColor ? bgColor : '#c62a18'}
       color={color ? color : '#ffffff'}
       onClick={onClick}
+      borderRadius={borderRadius ? borderRadius : 0}
     >
       {children}
     </StyledButton>

@@ -6,12 +6,14 @@ interface InputBoxType {
   type?: 'text' | 'email' | 'password';
   width: number;
   height: number;
+  borderRadius?: number;
   placeholder: string;
   onChange?: React.ChangeEventHandler;
 }
 
 export const InputBox = (props: InputBoxType) => {
-  const { name, id, type, width, height, placeholder, onChange } = props;
+  const { name, id, type, width, height, placeholder, onChange, borderRadius } =
+    props;
 
   return (
     <StyledInputBox
@@ -22,6 +24,7 @@ export const InputBox = (props: InputBoxType) => {
       height={height}
       placeholder={placeholder}
       onChange={onChange}
+      borderRadius={borderRadius ? borderRadius : 0}
     ></StyledInputBox>
   );
 };
