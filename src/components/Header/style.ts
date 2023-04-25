@@ -39,7 +39,14 @@ export const HeaderBox = styled.div`
       display: flex;
 
       & > div {
-        margin: 0 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid ${({ theme }) => theme.colors.gray1};
+        border-radius: 10px;
+        margin: 0 3px;
         cursor: pointer;
       }
     }
@@ -102,6 +109,10 @@ export const CategoryBox = styled.div`
         cursor: pointer;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        :hover {
+          color: ${({ theme }) => theme.colors.red};
+        }
 
         &.active {
           color: ${({ theme }) => theme.colors.red};

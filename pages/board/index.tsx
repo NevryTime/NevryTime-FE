@@ -1,24 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Header from '@/src/components/Header';
-import Footer from '@/src/components/Footer';
+import CommonLayout from '@/src/views/commonLayout';
 
-const FooterSection = styled.div`
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-`;
-
-function boardPage() {
+function BoardPage() {
   return (
-    <div>
+    <CommonLayout>
       <Header />각 게시판 페이지
-      <FooterSection>
-        <Footer />
-      </FooterSection>
-    </div>
+    </CommonLayout>
   );
 }
 
-export default boardPage;
+export default BoardPage;

@@ -14,7 +14,6 @@ const Container = styled.div`
 
 const FooterSection = styled.div`
   width: 100%;
-  position: absolute;
   bottom: 0;
 `;
 
@@ -36,12 +35,7 @@ function Home() {
           </FooterSection>
         </>
       ) : (
-        <>
-          <MainView_NotLogged />
-          <FooterSection>
-            <Footer />
-          </FooterSection>
-        </>
+        <MainView_NotLogged />
       )}
     </Container>
   );

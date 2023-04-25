@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 /** styles */
@@ -12,6 +12,19 @@ import {
 
 /** assets */
 import NevryTimeLogo2 from '../../assets/icons/nevrytime-logo2.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMessage } from '@fortawesome/free-regular-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+
+/** axios */
+import { getBoardList } from '@/src/axios/BoardListAxios';
+
+/** types */
+interface BoardType {
+  id: number;
+  boardName: string;
+  url: string;
+}
 
 const HeaderNavMenu = [
   {
@@ -50,13 +63,6 @@ const HeaderNavMenu = [
     url: '',
   },
 ];
-
-/** types */
-interface BoardType {
-  id: number;
-  boardName: string;
-  url: string;
-}
 
 function Header() {
   // 현재 위치한 탭
@@ -112,12 +118,13 @@ function Header() {
       boardName: '동아리 학회',
       url: '',
     },
-    {
-      id: 10,
-      boardName: '아무게시판',
-      url: '',
-    },
   ]);
+
+  // useEffect(() => {
+  //   getBoardList().then((res) => {
+  //     console.log(res);
+  //   });
+  // }, []);
 
   // 현재 게시판 목록(졸업생)
   const [graduateBoards, setGraduateBoards] = useState<BoardType[]>([
@@ -231,17 +238,17 @@ function Header() {
       url: '',
     },
     {
-      id: 17,
+      id: 20,
       boardName: '끝말잇기',
       url: '',
     },
     {
-      id: 18,
+      id: 21,
       boardName: '끝말잇기',
       url: '',
     },
     {
-      id: 19,
+      id: 22,
       boardName: '끝말잇기',
       url: '',
     },
@@ -275,8 +282,12 @@ function Header() {
           ))}
         </ul>
         <div>
-          <div>쪽지</div>
-          <div>마이페이지</div>
+          <div>
+            <FontAwesomeIcon icon={faMessage} />
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faUser} />
+          </div>
         </div>
       </HeaderBox>
       <CategoryBox>
