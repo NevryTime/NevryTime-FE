@@ -12,6 +12,7 @@ export interface DefaultTheme {
     gray2: string;
     gray3: string;
     gray4: string;
+    gray5: string;
     light_gray1: string;
     light_gray2: string;
     light_gray3: string;
