@@ -51,7 +51,7 @@ const HeaderNavMenu = [
   },
 ];
 
-/** interface type */
+/** types */
 interface BoardType {
   id: number;
   boardName: string;
