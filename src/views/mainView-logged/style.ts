@@ -99,7 +99,7 @@ export const MyContentBox = styled.div`
     :nth-child(3) {
       & > svg,
       img {
-        color: #fde74c;
+        color: #e6cc00;
       }
     }
 
