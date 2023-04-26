@@ -13,21 +13,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-import Footer from '@/src/components/Footer';
-
-const FooterSection = styled.div`
-  width: 100%;
-  bottom: 0;
-`;
-
-type MyComponentProps = {
-  children: ReactNode;
-};
-
-function CommonLayout({ children }: MyComponentProps) {
+function CommonLayout() {
   return (
     <>
-      {children}
       <RightSection>
         <PopularContentBox>
           <div>실시간 인기 글</div>
@@ -62,10 +50,6 @@ function CommonLayout({ children }: MyComponentProps) {
           </div>
         </BestContent>
       </RightSection>
-      
-      <FooterSection>
-        <Footer />
-      </FooterSection>
     </>
   );
   // return <div>{children}공통 컴포넌트 RightSection</div>;
