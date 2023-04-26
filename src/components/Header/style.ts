@@ -48,6 +48,11 @@ export const HeaderBox = styled.div`
         border-radius: 10px;
         margin: 0 3px;
         cursor: pointer;
+
+        & > svg,
+        img {
+          width: 20px;
+        }
       }
     }
   }

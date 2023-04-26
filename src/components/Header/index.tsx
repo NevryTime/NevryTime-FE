@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 /** styles */
 import {
@@ -264,7 +265,10 @@ function Header() {
     <HeaderContainer>
       <HeaderBox>
         <LogoBox>
-          <Image src={NevryTimeLogo2} alt="" width={60} height={60} />
+          <Link href="/">
+            <Image src={NevryTimeLogo2} alt="" width={60} height={60} />
+          </Link>
+
           <div>
             <div>에브리타임</div>
             <div>순천향대</div>
