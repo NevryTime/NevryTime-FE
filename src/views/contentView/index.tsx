@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
+/** hooks */
+import { calcWritedTime } from '@/src/hooks/calcWritedTime';
+
 /** styles */
 import {
   ContentContainer,
@@ -21,6 +24,7 @@ import {
 } from './style';
 import { InputBox } from '@/src/components/InputBox';
 
+/** components */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faList } from '@fortawesome/free-solid-svg-icons';
@@ -57,13 +61,10 @@ type contentType = {
 };
 
 function contentView({ contentData }: contentType) {
-  console.log(...contentData);
-  // 59분 초과면 4/26 13:00 로 나타내기
-
   // 게시글 작성 시간 계산
   const [writedTime, setWritedTime] = useState('');
   useEffect(() => {
-    //console.log(moment(contentData[0].createAt));
+    setWritedTime(calcWritedTime(contentData[0]));
   }, [contentData]);
 
   return (
@@ -78,7 +79,7 @@ function contentView({ contentData }: contentType) {
             <div>
               {contentData[0].show ? contentData[0].memberName : '익명'}
             </div>
-            <div>글 쓴 시간</div>
+            <div>{writedTime}</div>
           </div>
         </ContentInfo>
         <ContentTitle>{contentData[0].title}</ContentTitle>

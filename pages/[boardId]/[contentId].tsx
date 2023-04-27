@@ -47,7 +47,7 @@ function Content() {
       title: '게시글 생성 테스트1',
       content: '내용은 아무거나 게시판 종류는 자유게시판',
       likes: 0,
-      createAt: '2023-04-26T15:06:00.710734',
+      createAt: '2023-04-27T12:00:00.710734',
       image: false,
       show: false,
     },
