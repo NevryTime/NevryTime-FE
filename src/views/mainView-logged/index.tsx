@@ -22,9 +22,9 @@ import { Button } from '@/src/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { useRouter } from 'next/router';
 
 function mainView() {

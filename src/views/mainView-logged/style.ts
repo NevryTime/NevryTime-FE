@@ -39,6 +39,7 @@ export const MyInfoBox = styled.div`
   & > svg,
   img {
     width: 50px;
+    height: 50px;
     display: block;
     margin: 30px auto 15px auto;
     color: ${({ theme }) => theme.colors.black3};
@@ -99,7 +100,7 @@ export const MyContentBox = styled.div`
     :nth-child(3) {
       & > svg,
       img {
-        color: #fde74c;
+        color: #e6cc00;
       }
     }
 
