@@ -16,5 +16,7 @@ export interface DefaultTheme {
     light_gray1: string;
     light_gray2: string;
     light_gray3: string;
+    blue: string;
+    yellow: string;
   };
 }
