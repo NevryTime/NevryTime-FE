@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import Header from '@/src/components/Header';
-import CommonLayout from '@/src/views/commonLayout';
+import CommonRightLayout from '@/src/views/common/commonRightLayout';
 import Footer from '@/src/components/Footer';
 
 import ContentView from '@/src/views/contentView';
@@ -69,7 +69,7 @@ function Content() {
           image={false}
           show={false}
         />
-        <CommonLayout />
+        <CommonRightLayout />
       </LayoutContainer>
       <FooterSection>
         <Footer />

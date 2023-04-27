@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Header from '@/src/components/Header';
-import CommonLayout from '@/src/views/commonLayout';
+import CommonRightLayout from '@/src/views/common/commonRightLayout';
 
 import BoardView from '@/src/views/boardView';
 import Footer from '@/src/components/Footer';
@@ -109,7 +109,7 @@ function BoardPage() {
           image={false}
           show={false}
         />
-        <CommonLayout />
+        <CommonRightLayout />
       </LayoutContainer>
       <FooterSection>
         <Footer />
