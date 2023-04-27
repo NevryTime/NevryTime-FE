@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 /** views */
 import Header from '../src/components/Header';
+import BoardCategories from '@/src/components/BoardCategories';
 import Footer from '../src/components/Footer';
 import MainView_Logged from '../src/views/mainView-logged';
 import MainView_NotLogged from '../src/views/mainView-notLogged';
@@ -29,6 +30,7 @@ function Home() {
       {isLogin ? (
         <>
           <Header />
+          <BoardCategories />
           <MainView_Logged />
           <FooterSection>
             <Footer />
