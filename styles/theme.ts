@@ -39,6 +39,7 @@ const containers = {
   mainContainer: css`
     width: 100vw;
     height: 100vh;
+    padding-top: 80px;
   `,
 };
 
