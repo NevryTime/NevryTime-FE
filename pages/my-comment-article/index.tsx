@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import MyCommentArticleView from '@/src/views/myCommentArticleView';
 import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';
-import CommonLayout from '@/src/views/commonLayout';
+import CommonRightLayout from '@/src/views/common/commonRightLayout';
 
 const FooterSection = styled.div`
   width: 100%;
@@ -27,7 +27,7 @@ function myCommentArticle() {
       <Header />
       <LayoutContainer>
         <MyCommentArticleView />
-        <CommonLayout />
+        <CommonRightLayout />
       </LayoutContainer>
       <FooterSection>
         <Footer />

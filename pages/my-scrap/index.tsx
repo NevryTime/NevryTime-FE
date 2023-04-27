@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import MyScrapView from '@/src/views/myScrapView';
 import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';
-import CommonLayout from '@/src/views/commonLayout';
+import CommonRightLayout from '@/src/views/common/commonRightLayout';
 
 const FooterSection = styled.div`
   width: 100%;
@@ -22,16 +22,18 @@ const LayoutContainer = styled.div`
 `;
 
 function MyScrap() {
-  return     <Container>
-  <Header />
-  <LayoutContainer>
-    <MyScrapView />
-    <CommonLayout />
-  </LayoutContainer>
-  <FooterSection>
-    <Footer />
-  </FooterSection>
-</Container>;
+  return (
+    <Container>
+      <Header />
+      <LayoutContainer>
+        <MyScrapView />
+        <CommonRightLayout />
+      </LayoutContainer>
+      <FooterSection>
+        <Footer />
+      </FooterSection>
+    </Container>
+  );
 }
 
 export default MyScrap;

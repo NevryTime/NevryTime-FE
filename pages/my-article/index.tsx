@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import MyArticleView from '@/src/views/myArticleView';
 import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';
-import CommonLayout from '@/src/views/commonLayout';
+import CommonRightLayout from '@/src/views/common/commonRightLayout';
 
 const FooterSection = styled.div`
   width: 100%;
@@ -27,7 +27,7 @@ function myArticle() {
       <Header />
       <LayoutContainer>
         <MyArticleView />
-        <CommonLayout />
+        <CommonRightLayout />
       </LayoutContainer>
       <FooterSection>
         <Footer />
