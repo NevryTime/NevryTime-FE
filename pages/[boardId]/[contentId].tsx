@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import Header from '@/src/components/Header';
-import CommonLayout from '@/src/views/commonLayout';
+import BoardCategories from '@/src/components/BoardCategories';
+import CommonRightLayout from '@/src/views/common/commonRightLayout';
 import Footer from '@/src/components/Footer';
 
 import ContentView from '@/src/views/contentView';
@@ -13,7 +14,9 @@ const FooterSection = styled.div`
   bottom: 0;
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  ${({ theme }) => theme.containers.mainContainer}
+`;
 
 const LayoutContainer = styled.div`
   width: 1125px;
@@ -56,6 +59,7 @@ function Content() {
   return (
     <Container>
       <Header />
+      <BoardCategories />
       <LayoutContainer>
         <ContentView
           contentData={contentData}
@@ -69,7 +73,7 @@ function Content() {
           image={false}
           show={false}
         />
-        <CommonLayout />
+        <CommonRightLayout />
       </LayoutContainer>
       <FooterSection>
         <Footer />

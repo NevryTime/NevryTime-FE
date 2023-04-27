@@ -92,10 +92,10 @@ export const CountStateBox = styled.div`
       color: ${({ theme }) => theme.colors.red};
     }
     :nth-child(2) {
-      color: #0077b6;
+      color:${({ theme }) => theme.colors.blue};
     }
     :nth-child(3) {
-      color: #e6cc00;
+      color:${({ theme }) => theme.colors.yellow};
     }
   }
 `;

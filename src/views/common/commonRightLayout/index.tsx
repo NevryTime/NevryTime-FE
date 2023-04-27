@@ -10,10 +10,10 @@ import {
 } from './style';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 
-function CommonLayout() {
+function CommonRightLayout() {
   return (
     <>
       <RightSection>
@@ -55,4 +55,4 @@ function CommonLayout() {
   // return <div>{children}공통 컴포넌트 RightSection</div>;
 }
 
-export default CommonLayout;
+export default CommonRightLayout;

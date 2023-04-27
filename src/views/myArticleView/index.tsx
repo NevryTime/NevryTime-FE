@@ -1,28 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-import Header from '@/src/components/Header';
-import BoardCategories from '@/src/components/BoardCategories';
-import CommonRightLayout from '@/src/views/common/commonRightLayout';
-
-import BoardView from '@/src/views/boardView';
-import Footer from '@/src/components/Footer';
-
-const FooterSection = styled.div`
-  width: 100%;
-  bottom: 0;
-`;
-
-const Container = styled.div`
-  ${({ theme }) => theme.containers.mainContainer}
-`;
-
-const LayoutContainer = styled.div`
-  width: 1125px;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px auto;
-`;
+/** components */
+import CommonMyContentListLayout from '../common/commonMyContentListLayout';
 
 /** types */
 type contentListDataType = {
@@ -37,7 +16,7 @@ type contentListDataType = {
   show: boolean;
 };
 
-function BoardPage() {
+function MyArticleView() {
   const [contentList, setContentList] = useState<contentListDataType[]>([
     {
       id: 17,
@@ -97,29 +76,20 @@ function BoardPage() {
   ]);
 
   return (
-    <Container>
-      <Header />
-      <BoardCategories />
-      <LayoutContainer>
-        <BoardView
-          contentList={contentList}
-          id={0}
-          boardName={''}
-          memberName={''}
-          title={''}
-          content={''}
-          likes={0}
-          createAt={''}
-          image={false}
-          show={false}
-        />
-        <CommonRightLayout />
-      </LayoutContainer>
-      <FooterSection>
-        <Footer />
-      </FooterSection>
-    </Container>
+    <CommonMyContentListLayout
+      contentList={contentList}
+      titleName={'내가 쓴 글'}
+      id={0}
+      boardName={''}
+      memberName={''}
+      title={''}
+      content={''}
+      likes={0}
+      createAt={''}
+      image={false}
+      show={false}
+    />
   );
 }
 
-export default BoardPage;
+export default MyArticleView;

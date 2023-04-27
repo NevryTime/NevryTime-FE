@@ -86,7 +86,7 @@ export const MyContentBox = styled.div`
     :nth-child(1) {
       & > svg,
       img {
-        color: #0077b6;
+        color: ${({ theme }) => theme.colors.blue};
       }
     }
     :nth-child(2) {
@@ -100,7 +100,7 @@ export const MyContentBox = styled.div`
     :nth-child(3) {
       & > svg,
       img {
-        color: #e6cc00;
+        color: ${({ theme }) => theme.colors.yellow};
       }
     }
 
@@ -232,12 +232,12 @@ export const PopularContent = styled.div`
         }
         :nth-child(3) {
           font-size: 12px;
-          color: #00b4d8;
+          color: ${({ theme }) => theme.colors.blue};
 
           & > svg,
           img {
             width: 10px;
-            color: #00b4d8;
+            color: ${({ theme }) => theme.colors.blue};
             margin-right: 3px;
           }
         }

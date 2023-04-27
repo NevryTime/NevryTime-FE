@@ -103,12 +103,12 @@ export const PopularContent = styled.div`
         }
         :nth-child(3) {
           font-size: 12px;
-          color: #00b4d8;
+          color:${({ theme }) => theme.colors.blue};
 
           & > svg,
           img {
             width: 10px;
-            color: #00b4d8;
+            color:${({ theme }) => theme.colors.blue};
             margin-right: 3px;
           }
         }

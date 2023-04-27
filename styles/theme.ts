@@ -31,12 +31,15 @@ const colors = {
   light_gray1: '#f2f2f2',
   light_gray2: '#f9f9f9',
   light_gray3: '#f8f8f8',
+  blue: '#0077B6',
+  yellow: '#E6CC00',
 };
 
 const containers = {
   mainContainer: css`
     width: 100vw;
     height: 100vh;
+    padding-top: 80px;
   `,
 };
 
