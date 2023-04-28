@@ -1,6 +1,9 @@
+'use client';
+
 /** 로그인 뷰 */
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -41,22 +44,13 @@ function loginView() {
     setPassword(e.target.value);
   };
 
-  // 로그인 요청
-  const onClickLoginRequest = () => {
-    const loginData: loginDataType = {
+  const onClickLoginRequest = async () => {
+    await signIn('credentials', {
       name: name,
       password: password,
-    };
-
-    loginRequest(loginData)
-      .then((res) => {
-        console.log(res);
-        alert('로그인이 완료되었습니다.');
-        router.push('/');
-      })
-      .catch((error) => {
-        alert(error.response.data.message);
-      });
+      redirect: true,
+      callbackUrl: '/',
+    });
   };
 
   return (
