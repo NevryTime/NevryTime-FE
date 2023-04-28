@@ -1,4 +1,4 @@
-import { customAxios } from '@/src/hooks/customAxios';
+import { customAxios } from '@/src/axios/customAxios';
 
 /** types */
 // 회원가입 데이터 타입
