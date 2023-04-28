@@ -1,5 +1,6 @@
 /** 네브리타임 접속시 보이는 첫 화면 뷰(로그인 한 경우) */
 import React from 'react';
+import { signOut } from 'next-auth/react';
 
 import {
   Main,
@@ -53,6 +54,7 @@ function mainView() {
                 bgColor={'#f2f2f2'}
                 color={'#737373'}
                 borderRadius={3}
+                onClick={() => signOut()}
               >
                 로그아웃
               </Button>

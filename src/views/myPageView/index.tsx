@@ -1,9 +1,10 @@
 /** 마이페이지 뷰 */
-import { Button } from '@/src/components/Button';
 import React from 'react';
+import { signOut } from 'next-auth/react';
 
 import { MyPageContainer, MyInfoBox, MyAccountBox } from './style';
 
+import { Button } from '@/src/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
@@ -14,7 +15,12 @@ function myPageView() {
       <MyInfoBox>
         <div>
           <div>내 정보</div>
-          <Button width={64} height={30} borderRadius={15}>
+          <Button
+            width={64}
+            height={30}
+            borderRadius={15}
+            onClick={() => signOut()}
+          >
             로그아웃
           </Button>
         </div>
