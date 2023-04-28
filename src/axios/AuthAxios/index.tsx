@@ -11,6 +11,11 @@ export type loginDataType = {
   name: string;
   password: string;
 };
+// 로그아웃 데이터 타입
+export type logoutDataType = {
+  accessToken: string;
+  refreshToken: string;
+};
 // 토큰 재발급 데이터 타입
 export type refreshDataType = {
   accessToken: string;
@@ -25,6 +30,11 @@ export const signUpRequest = async (signUpData: signUpDataType) => {
 /** 로그인 요청 */
 export const loginRequest = async (loginData: loginDataType) => {
   return await customAxios.post(`/auth/login/`, loginData);
+};
+
+/** 로그아웃 요청 */
+export const logoutRequest = async (logoutData: logoutDataType) => {
+  return await customAxios.post(`/auth/logout/`, logoutData);
 };
 
 /** 토큰 재발급 요청 */

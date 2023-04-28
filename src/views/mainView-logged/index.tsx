@@ -1,6 +1,6 @@
 /** 네브리타임 접속시 보이는 첫 화면 뷰(로그인 한 경우) */
 import React from 'react';
-import { signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 import {
   Main,
@@ -28,8 +28,28 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { useRouter } from 'next/router';
 
+/** axios */
+import { logoutRequest } from '../../axios/AuthAxios';
+
 function mainView() {
-  const router = useRouter();
+  const { data: session } = useSession();
+
+  const onClickLogout = () => {
+    const logoutData = {
+      accessToken: session.user.accessToken,
+      refreshToken: session.user.refreshToken,
+    };
+
+    logoutRequest(logoutData)
+      .then((res) => {
+        console.log(res);
+        signOut();
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
+
   return (
     <Main>
       <MainViewContainer>
@@ -54,7 +74,7 @@ function mainView() {
                 bgColor={'#f2f2f2'}
                 color={'#737373'}
                 borderRadius={3}
-                onClick={() => signOut()}
+                onClick={() => onClickLogout()}
               >
                 로그아웃
               </Button>
