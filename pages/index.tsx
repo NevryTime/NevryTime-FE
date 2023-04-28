@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import styled from 'styled-components';
 
@@ -19,7 +20,7 @@ const FooterSection = styled.div`
 `;
 
 function Home() {
-  const [isLogin, setIsLogin] = useState(true);
+  const { data: session } = useSession();
 
   return (
     <Container>
@@ -27,7 +28,7 @@ function Home() {
         <title>네브리타임</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {isLogin ? (
+      {session?.user?.accessToken ? (
         <>
           <Header />
           <BoardCategories />
