@@ -1,6 +1,7 @@
 /** 네브리타임 접속시 보이는 첫 화면 뷰(로그인 한 경우) */
 import React from 'react';
 import { useSession, signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 import {
   Main,
@@ -32,8 +33,11 @@ import { useRouter } from 'next/router';
 import { logoutRequest } from '../../axios/AuthAxios';
 
 function mainView() {
+  const router = useRouter();
+  // 로그인 한 유저의 세션 데이터
   const { data: session } = useSession();
 
+  // 로그아웃 요청
   const onClickLogout = () => {
     const logoutData = {
       accessToken: session.user.accessToken,
@@ -51,6 +55,11 @@ function mainView() {
       });
   };
 
+  // 마이페이지로 이동
+  const onClickMyInfo = () => {
+    router.push('/my-page');
+  };
+
   return (
     <Main>
       <MainViewContainer>
@@ -66,6 +75,9 @@ function mainView() {
                 bgColor={'#f2f2f2'}
                 color={'#737373'}
                 borderRadius={3}
+                onClick={() => {
+                  onClickMyInfo();
+                }}
               >
                 내정보
               </Button>
@@ -82,17 +94,17 @@ function mainView() {
             </div>
           </MyInfoBox>
           <MyContentBox>
-            <div>
+            <Link href="/my-article">
               <FontAwesomeIcon icon={faList} />
               내가 쓴 글
-            </div>
-            <div>
+            </Link>
+            <Link href="/my-comment-article">
               <FontAwesomeIcon icon={faComment} />
               댓글 단 글
-            </div>
-            <div>
+            </Link>
+            <Link href="/my-scrap">
               <FontAwesomeIcon icon={faStar} />내 스크랩
-            </div>
+            </Link>
           </MyContentBox>
         </LeftSection>
 

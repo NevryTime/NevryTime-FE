@@ -77,7 +77,7 @@ export const MyContentBox = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   background: ${({ theme }) => theme.colors.light_gray1};
 
-  & > div {
+  & > a {
     display: flex;
     padding: 10px 15px;
     font-size: 13px;

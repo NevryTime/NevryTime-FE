@@ -80,12 +80,12 @@ function Header() {
         ))}
       </ul>
       <div>
-        <div>
+        <Link href="/message">
           <FontAwesomeIcon icon={faMessage} />
-        </div>
-        <div>
+        </Link>
+        <Link href="/my-page">
           <FontAwesomeIcon icon={faUser} />
-        </div>
+        </Link>
       </div>
     </HeaderContainer>
   );
