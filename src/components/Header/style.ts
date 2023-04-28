@@ -38,7 +38,7 @@ export const HeaderContainer = styled.div`
     :nth-child(3) {
       display: flex;
 
-      & > div {
+      & > a {
         width: 40px;
         height: 40px;
         display: flex;

@@ -7,7 +7,9 @@ interface Props {
   children: ReactNode;
 }
 const Providers = ({ children }: Props) => {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider refetchOnWindowFocus={false}>{children}</SessionProvider>
+  );
 };
 
 export default Providers;
