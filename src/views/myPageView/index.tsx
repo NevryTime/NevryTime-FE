@@ -1,15 +1,36 @@
 /** 마이페이지 뷰 */
 import React from 'react';
-import { signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 import { MyPageContainer, MyInfoBox, MyAccountBox } from './style';
-
 import { Button } from '@/src/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
+/** axios */
+import { logoutRequest } from '../../axios/AuthAxios';
+
 function myPageView() {
+  const { data: session } = useSession();
+
+  const onClickLogout = () => {
+    const logoutData = {
+      accessToken: session.user.accessToken,
+      refreshToken: session.user.refreshToken,
+    };
+
+    logoutRequest(logoutData)
+      .then((res) => {
+        console.log(res);
+        alert('로그아웃 되었습니다.');
+        signOut({ callbackUrl: '/login' });
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
+
   return (
     <MyPageContainer>
       <MyInfoBox>
@@ -19,7 +40,7 @@ function myPageView() {
             width={64}
             height={30}
             borderRadius={15}
-            onClick={() => signOut()}
+            onClick={() => onClickLogout()}
           >
             로그아웃
           </Button>
