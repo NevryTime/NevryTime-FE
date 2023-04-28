@@ -3,11 +3,15 @@ import GlobalStyle from '../styles/globalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 
+import Providers from '@/src/utils/Providers';
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <Providers>
+        <Component {...pageProps} />
+      </Providers>
     </ThemeProvider>
   );
 }
