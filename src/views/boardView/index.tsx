@@ -1,6 +1,7 @@
 /** 각 게시판의 메인페이지 뷰 */
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
+import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
 
 /** hooks */
 import { calcWritedTime } from '@/src/hooks/calcWritedTime';
@@ -12,9 +13,20 @@ import {
   WriteSection,
   ContentListSection,
   Content,
+  Status,
   PageSection,
 } from './style';
 import { InputBox } from '@/src/components/InputBox';
+
+/** components */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
+import Pagenation from '../common/pagenationLayout';
+
+/** store */
+import { boardCategoryListAtom } from '../../../src/store/BoardCategoryStore';
 
 /** types */
 type contentDataType = {
@@ -23,6 +35,8 @@ type contentDataType = {
   memberName: string;
   title: string;
   content: string;
+  hearts: number;
+  commentCount: number;
   likes: number;
   createAt: string;
   image: boolean;
@@ -36,6 +50,8 @@ type contentListType = {
   memberName: string;
   title: string;
   content: string;
+  hearts: number;
+  commentCount: number;
   likes: number;
   createAt: string;
   image: boolean;
@@ -43,6 +59,24 @@ type contentListType = {
 };
 
 function boardView({ contentList }: contentListType) {
+  const router = useRouter();
+  const { boardId } = router.query;
+
+  // 해당 게시판 정보 전역상태 가져오기
+  const boardCategoryValue = useRecoilValue(boardCategoryListAtom);
+  const [currentBoardCategory, setCurrentBoardCategory] = useState([]);
+
+  // 현재 위치한 게시판이 무엇인지 판단
+  useEffect(() => {
+    if (boardId) {
+      const boardCategory = boardCategoryValue.find(
+        (board) => board.id === Number(boardId),
+      );
+
+      setCurrentBoardCategory(boardCategory.name);
+    }
+  }, [contentList]);
+
   // 게시글 작성 시간 계산
   const [writedTime, setWritedTime] = useState(
     Array(contentList.length).fill(''),
@@ -60,7 +94,7 @@ function boardView({ contentList }: contentListType) {
 
   return (
     <BoardContainer>
-      <BoardTitleSection>게시판 이름</BoardTitleSection>
+      <BoardTitleSection>{currentBoardCategory}</BoardTitleSection>
       {/* 클릭하면 글 작성하는 영역 열리게 */}
       <WriteSection>
         <InputBox
@@ -70,18 +104,42 @@ function boardView({ contentList }: contentListType) {
         />
       </WriteSection>
       <ContentListSection>
-        {contentList.map((content, i) => (
-          <Content key={content.id}>
-            <div>{content.title}</div>
-            <div>{content.content}</div>
-            <div>
-              <div>{writedTime[i]}</div>
-              <div>{content.show ? content.memberName : '익명'}</div>
-            </div>
-          </Content>
-        ))}
+        {contentList && contentList.length > 0 ? (
+          <>
+            {contentList.map((content, i) => (
+              <Content key={content.id}>
+                <div>{content.title}</div>
+                <div>{content.content}</div>
+                <div>
+                  <div>{writedTime[i]}</div>
+                  <div>{content.show ? content.memberName : '익명'}</div>
+                  <Status>
+                    {content.image ? (
+                      <div>
+                        <FontAwesomeIcon icon={faImage} /> 1
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                    <div>
+                      <FontAwesomeIcon icon={faThumbsUp} /> {content.hearts}
+                    </div>
+                    <div>
+                      <FontAwesomeIcon icon={faComment} />{' '}
+                      {content.commentCount}
+                    </div>
+                  </Status>
+                </div>
+              </Content>
+            ))}
+          </>
+        ) : (
+          <Content>게시글이 없습니다.</Content>
+        )}
       </ContentListSection>
-      <PageSection>페이지네이션 구간</PageSection>
+      {/* <PageSection>
+        <Pagenation />
+      </PageSection> */}
     </BoardContainer>
   );
 }

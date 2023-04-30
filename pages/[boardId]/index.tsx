@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import Header from '@/src/components/Header';
 import BoardCategories from '@/src/components/BoardCategories';
 import CommonRightLayout from '@/src/views/common/commonRightLayout';
+import Pagenation from '@/src/views/common/pagenationLayout';
 
 import BoardView from '@/src/views/boardView';
 import Footer from '@/src/components/Footer';
+
+/** axios */
+import { boardRequest } from '../../src/axios/BoardAxios';
 
 const FooterSection = styled.div`
   width: 100%;
@@ -24,6 +29,11 @@ const LayoutContainer = styled.div`
   margin: 20px auto;
 `;
 
+const PageSection = styled.div`
+  width: 1125px;
+  margin: 20px auto;
+`;
+
 /** types */
 type contentListDataType = {
   id: number;
@@ -31,6 +41,8 @@ type contentListDataType = {
   memberName: string;
   title: string;
   content: string;
+  hearts: number;
+  commentCount: number;
   likes: number;
   createAt: string;
   image: boolean;
@@ -38,63 +50,31 @@ type contentListDataType = {
 };
 
 function BoardPage() {
-  const [contentList, setContentList] = useState<contentListDataType[]>([
-    {
-      id: 17,
-      boardName: '자유게시판',
-      memberName: 'tester1',
-      title: '게시글 생성 테스트1',
-      content: '내용은 아무거나 게시판 종류는 자유게시판',
-      likes: 0,
-      createAt: '2023-04-27T13:15:56.710734',
-      image: false,
-      show: false,
-    },
-    {
-      id: 16,
-      boardName: '자유게시판',
-      memberName: 'tester1',
-      title: '게시글 생성 테스트1',
-      content: '내용은 아무거나 게시판 종류는 자유게시판',
-      likes: 0,
-      createAt: '2023-04-27T12:18:56.293968',
-      image: false,
-      show: false,
-    },
-    {
-      id: 15,
-      boardName: '자유게시판',
-      memberName: 'tester3',
-      title: '게시글 생성 테스트1',
-      content: '내용은 아무거나 게시판 종류는 자유게시판',
-      likes: 0,
-      createAt: '2023-04-22T08:19:53.678716',
-      image: false,
-      show: false,
-    },
-    {
-      id: 14,
-      boardName: '자유게시판',
-      memberName: 'tester3',
-      title: '게시글 생성 테스트1',
-      content: '내용은 아무거나 게시판 종류는 자유게시판',
-      likes: 0,
-      createAt: '2023-04-27T13:00:53.253813',
-      image: false,
-      show: false,
-    },
-    {
-      id: 13,
-      boardName: '자유게시판',
-      memberName: 'tester3',
-      title: '게시글 생성 테스트1',
-      content: '내용은 아무거나 게시판 종류는 자유게시판',
-      likes: 0,
-      createAt: '2023-04-25T08:19:52.798578',
-      image: false,
-      show: false,
-    },
-  ]);
+  const router = useRouter();
+  const { boardId } = router.query;
+
+  // 해당 게시판의 게시글 리스트
+  const [contentList, setContentList] = useState<contentListDataType[]>([]);
+
+  // 현재 위치한 페이지
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  // 현재 게시판의 총 페이지 개수
+  const [totalPageCount, setTotalPageCount] = useState<number>(0);
+
+  // 현재 게시판 id와 현재 위치한 페이지를 이용해 게시글 목록을 요청함
+  useEffect(() => {
+    if (boardId) {
+      boardRequest(Number(boardId), currentPage, 20)
+        .then((res) => {
+          console.log(res.data);
+          setTotalPageCount(res.data.contentTotalPages);
+          setContentList(res.data.contentPage);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [boardId, currentPage]);
 
   return (
     <Container>
@@ -108,6 +88,8 @@ function BoardPage() {
           memberName={''}
           title={''}
           content={''}
+          hearts={0}
+          commentCount={0}
           likes={0}
           createAt={''}
           image={false}
@@ -115,6 +97,18 @@ function BoardPage() {
         />
         <CommonRightLayout />
       </LayoutContainer>
+      {contentList && contentList.length > 0 ? (
+        <PageSection>
+          <Pagenation
+            totalPageCount={totalPageCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </PageSection>
+      ) : (
+        ''
+      )}
+
       <FooterSection>
         <Footer />
       </FooterSection>

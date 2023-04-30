@@ -68,6 +68,28 @@ export const Content = styled.div`
   }
 `;
 
+export const Status = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+
+  font-size: 12px;
+
+  & > div {
+    margin: 0 5px;
+    :nth-last-child(3) {
+      color: ${({ theme }) => theme.colors.gray3};
+      margin-left: 10px;
+    }
+    :nth-last-child(2) {
+      color: ${({ theme }) => theme.colors.red};
+    }
+    :nth-last-child(1) {
+      color: ${({ theme }) => theme.colors.blue};
+    }
+  }
+`;
+
 export const PageSection = styled.div`
   margin-top: 20px;
 `;
