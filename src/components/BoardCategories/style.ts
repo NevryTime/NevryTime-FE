@@ -30,7 +30,7 @@ export const CategoryBox = styled.div`
         width: 45%;
       }
 
-      & > li {
+      & > a {
         width: 130px;
         font-size: 13px;
         padding: 5px 0;
