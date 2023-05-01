@@ -9,7 +9,7 @@ interface pagenationType {
   setCurrentPage: Dispatch<React.SetStateAction<number>>;
 }
 
-function Pagenation({
+function PagenationLayout({
   totalPageCount,
   currentPage,
   setCurrentPage,
@@ -64,4 +64,4 @@ function Pagenation({
   );
 }
 
-export default Pagenation;
+export default PagenationLayout;

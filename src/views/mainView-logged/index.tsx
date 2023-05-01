@@ -1,5 +1,5 @@
 /** 네브리타임 접속시 보이는 첫 화면 뷰(로그인 한 경우) */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 
@@ -31,11 +31,130 @@ import { useRouter } from 'next/router';
 
 /** axios */
 import { logoutRequest } from '../../axios/AuthAxios';
+import { boardRequest } from '../../axios/BoardAxios';
+
+/** types */
+type contentDataType = {
+  id: number;
+  boardName: string;
+  nickName: string;
+  title: string;
+  content: string;
+  scraps: number;
+  commentCount: number;
+  likes: number;
+  createAt: string;
+  image: boolean;
+  show: boolean;
+};
 
 function mainView() {
   const router = useRouter();
   // 로그인 한 유저의 세션 데이터
   const { data: session } = useSession();
+
+  const [board1, setBoard1] = useState([]);
+  const [board2, setBoard2] = useState([]);
+  const [board3, setBoard3] = useState([]);
+  const [board4, setBoard4] = useState([]);
+  const [board5, setBoard5] = useState([]);
+  const [board6, setBoard6] = useState([]);
+  const [board7, setBoard7] = useState([]);
+  const [board8, setBoard8] = useState([]);
+  const [board9, setBoard9] = useState([]);
+  const [board10, setBoard10] = useState([]);
+  const [board11, setBoard11] = useState([]);
+
+  // 게시판 11개의 상위 게시글 4개씩 가져오기
+  useEffect(() => {
+    boardRequest(1, 1, 4)
+      .then((res) => {
+        setBoard1(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(2, 1, 4)
+      .then((res) => {
+        setBoard2(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(3, 1, 4)
+      .then((res) => {
+        setBoard3(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(4, 1, 4)
+      .then((res) => {
+        setBoard4(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(5, 1, 4)
+      .then((res) => {
+        setBoard5(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(6, 1, 4)
+      .then((res) => {
+        setBoard6(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(7, 1, 4)
+      .then((res) => {
+        setBoard7(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(8, 1, 4)
+      .then((res) => {
+        setBoard8(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(9, 1, 4)
+      .then((res) => {
+        setBoard9(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(10, 1, 4)
+      .then((res) => {
+        setBoard9(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    boardRequest(11, 1, 4)
+      .then((res) => {
+        setBoard9(res.data.contentPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   // 로그아웃 요청
   const onClickLogout = () => {
@@ -48,7 +167,7 @@ function mainView() {
       .then((res) => {
         console.log(res);
         alert('로그아웃 되었습니다.');
-        signOut();
+        signOut({ callbackUrl: '/login' });
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -111,66 +230,66 @@ function mainView() {
         <MidSection>
           <MidContentBox>
             <div>자유게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board1 &&
+              board1.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>비밀게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board2 &&
+              board2.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>졸업생게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board3 &&
+              board3.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>새내기게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board4 &&
+              board4.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>시사 이슈</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board5 &&
+              board5.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>장터게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board6 &&
+              board6.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>정보게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board7 &&
+              board7.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>취업 진로</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board8 &&
+              board8.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>대학원&대학원생 게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {board9 &&
+              board9.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </MidContentBox>
           <MidContentBox>
             <div>홍보게시판</div>
