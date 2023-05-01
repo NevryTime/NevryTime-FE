@@ -5,7 +5,7 @@ export const boardListRequest = async () => {
   return await customAxios.get(`/api/board/`);
 };
 
-/** 게시판 내 게시글 요청 */
+/** 게시판 내 게시글 리스트 요청 */
 export const boardRequest = async (
   boardId: number,
   page: number,
@@ -14,4 +14,9 @@ export const boardRequest = async (
   return await customAxios.get(
     `/api/content/${boardId}/p/${page}?length=${length}`,
   );
+};
+
+/** 게시글 내용 요청 */
+export const contentRequest = async (contentId: number) => {
+  return await customAxios.get(`/api/content/${contentId}`);
 };

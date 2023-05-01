@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
 
+/** components */
 import Header from '@/src/components/Header';
 import BoardCategories from '@/src/components/BoardCategories';
 import CommonRightLayout from '@/src/views/common/commonRightLayout';
 import Footer from '@/src/components/Footer';
-
 import ContentView from '@/src/views/contentView';
+
+/** axios */
+import { contentRequest } from '../../src/axios/BoardAxios';
+
+/** store */
+import { contentAtom } from '@/src/store/ContentStore';
 
 const FooterSection = styled.div`
   width: 100%;
@@ -29,9 +36,11 @@ const LayoutContainer = styled.div`
 type contentDataType = {
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
+  scraps: number;
+  commentCount: number;
   likes: number;
   createAt: string;
   image: boolean;
@@ -42,19 +51,24 @@ function Content() {
   const router = useRouter();
   const { contentId } = router.query;
 
-  const [contentData, setContentData] = useState<contentDataType[]>([
-    {
-      id: 17,
-      boardName: '자유게시판',
-      memberName: 'tester1',
-      title: '게시글 생성 테스트1',
-      content: '내용은 아무거나 게시판 종류는 자유게시판',
-      likes: 0,
-      createAt: '2023-04-27T12:00:00.710734',
-      image: false,
-      show: false,
-    },
-  ]);
+  const [contentData, setContentData] =
+    useRecoilState<contentDataType>(contentAtom);
+
+  const [commentList, setCommentList] = useState([]);
+
+  useEffect(() => {
+    if (contentId) {
+      contentRequest(Number(contentId))
+        .then((res) => {
+          //console.log('res:', res);
+          setContentData(res.data.contentResponseDto);
+          setCommentList(res.data.commentList);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [contentId]);
 
   return (
     <Container>
@@ -63,11 +77,14 @@ function Content() {
       <LayoutContainer>
         <ContentView
           contentData={contentData}
+          commentList={commentList}
           id={0}
           boardName={''}
-          memberName={''}
+          nickName={''}
           title={''}
           content={''}
+          scraps={0}
+          commentCount={0}
           likes={0}
           createAt={''}
           image={false}
