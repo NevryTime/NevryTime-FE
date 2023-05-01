@@ -12,8 +12,8 @@ export const authOptions: AuthOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        name: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-        password: { label: 'Password', type: 'password' },
+        name: {},
+        password: {},
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
@@ -37,6 +37,7 @@ export const authOptions: AuthOptions = {
           // Any object returned will be saved in `user` property of the JWT
           return user;
         } else {
+          alert('아이디 혹은 비밀번호가 다릅니다.');
           // If you return null then an error will be displayed advising the user to check their details.
           return null;
 
@@ -60,6 +61,7 @@ export const authOptions: AuthOptions = {
     // Note: This option is ignored if using JSON Web Tokens
     updateAge: 24 * 60 * 60, // 24 hours
   },
+
   // 커스텀 로그인 페이지 추가
   pages: {
     signIn: '/login',
