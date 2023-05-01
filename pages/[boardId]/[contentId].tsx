@@ -70,8 +70,9 @@ function Content() {
           console.log(error);
         });
     };
-
-    contentRequest();
+    if (contentId) {
+      contentRequest();
+    }
   }, [contentId]);
 
   return (

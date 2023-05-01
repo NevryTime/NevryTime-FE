@@ -119,7 +119,7 @@ export const MidContentBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > div {
+  & > div, a {
     height: 100%;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
     padding: 10px;
