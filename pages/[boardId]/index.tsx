@@ -11,7 +11,7 @@ import BoardView from '@/src/views/boardView';
 import Footer from '@/src/components/Footer';
 
 /** axios */
-import { boardRequest } from '../../src/axios/BoardAxios';
+import useCustomAxios from '@/src/hooks/useCustomAxios';
 
 const FooterSection = styled.div`
   width: 100%;
@@ -50,12 +50,12 @@ type contentListDataType = {
 };
 
 function BoardPage() {
+  const axios = useCustomAxios();
   const router = useRouter();
   const { boardId } = router.query;
 
   // 해당 게시판의 게시글 리스트
   const [contentList, setContentList] = useState<contentListDataType[]>([]);
-
   // 현재 위치한 페이지
   const [currentPage, setCurrentPage] = useState<number>(0);
   // 현재 게시판의 총 페이지 개수
@@ -63,8 +63,9 @@ function BoardPage() {
 
   // 현재 게시판 id와 현재 위치한 페이지를 이용해 게시글 목록을 요청함
   useEffect(() => {
-    if (boardId) {
-      boardRequest(Number(boardId), currentPage, 20)
+    const boardRequest = async () => {
+      await axios
+        .get(`/api/content/${Number(boardId)}/p/${currentPage}?length=${20}`)
         .then((res) => {
           setTotalPageCount(res.data.contentTotalPages);
           setContentList(res.data.contentPage);
@@ -72,6 +73,10 @@ function BoardPage() {
         .catch((error) => {
           console.log(error);
         });
+    };
+
+    if (boardId) {
+      boardRequest();
     }
   }, [boardId, currentPage]);
 

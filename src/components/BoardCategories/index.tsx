@@ -8,7 +8,7 @@ import { boardCategoryListAtom } from '../../../src/store/BoardCategoryStore';
 import { CategoryBox, Divider } from './style';
 
 /** axios */
-import { boardListRequest } from '@/src/axios/BoardAxios';
+import useCustomAxios from '@/src/hooks/useCustomAxios';
 
 /** types */
 interface BoardType {
@@ -18,6 +18,8 @@ interface BoardType {
 }
 
 function BoardCategories() {
+  const axios = useCustomAxios();
+
   // 서버에서 가져온 모든 게시판 목록
   const [boards, setBoards] = useState<BoardType[]>([]);
   const setBoardsCategory = useSetRecoilState(boardCategoryListAtom);
@@ -32,10 +34,19 @@ function BoardCategories() {
   const [etcBoards, setEtcBoards] = useState<BoardType[]>([]);
 
   useEffect(() => {
-    boardListRequest().then((res) => {
-      setBoards(res.data.boardList);
-      setBoardsCategory(res.data.boardList);
-    });
+    const boardListRequest = async () => {
+      await axios
+        .get('/api/board/')
+        .then((res) => {
+          setBoards(res.data.boardList);
+          setBoardsCategory(res.data.boardList);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    boardListRequest();
   }, []);
 
   useEffect(() => {

@@ -30,7 +30,7 @@ import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { useRouter } from 'next/router';
 
 /** axios */
-import { logoutRequest } from '../../axios/AuthAxios';
+import useCustomAxios from '../../hooks/useCustomAxios';
 import { boardRequest } from '../../axios/BoardAxios';
 
 /** types */
@@ -50,6 +50,7 @@ type contentDataType = {
 
 function mainView() {
   const router = useRouter();
+  const axios = useCustomAxios();
   // 로그인 한 유저의 세션 데이터
   const { data: session } = useSession();
 
@@ -157,20 +158,15 @@ function mainView() {
   }, []);
 
   // 로그아웃 요청
-  const onClickLogout = () => {
-    const logoutData = {
-      accessToken: session.user.accessToken,
-      refreshToken: session.user.refreshToken,
-    };
-
-    logoutRequest(logoutData)
+  const onClickLogout = async () => {
+    await axios
+      .post('/auth/logout/')
       .then((res) => {
-        console.log(res);
         alert('로그아웃 되었습니다.');
         signOut({ callbackUrl: '/login' });
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        console.log(error);
       });
   };
 

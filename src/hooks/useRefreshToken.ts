@@ -1,7 +1,6 @@
 'use client';
 
 import { customAxios } from '../axios/customAxios';
-import { refreshRequest } from '../axios/AuthAxios';
 import { signIn, useSession } from 'next-auth/react';
 
 export const useRefreshToken = () => {

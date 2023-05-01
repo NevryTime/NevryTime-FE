@@ -24,9 +24,6 @@ import { Button } from '../../components/Button';
 /** assets */
 import NevryTimeLogo from '../../assets/icons/nevrytime-logo.png';
 
-/** axios */
-import { loginRequest, loginDataType } from '@/src/axios/AuthAxios';
-
 function loginView() {
   // useRouter
   const router = useRouter();

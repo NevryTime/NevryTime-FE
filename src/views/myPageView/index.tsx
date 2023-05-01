@@ -9,24 +9,22 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
 /** axios */
-import { logoutRequest } from '../../axios/AuthAxios';
+import useCustomAxios from '@/src/hooks/useCustomAxios';
 
 function myPageView() {
+  const axios = useCustomAxios();
   const { data: session } = useSession();
 
-  const onClickLogout = () => {
-    const logoutData = {
-      accessToken: session.user.accessToken,
-      refreshToken: session.user.refreshToken,
-    };
-
-    logoutRequest(logoutData)
+  // 로그아웃 요청
+  const onClickLogout = async () => {
+    await axios
+      .post('/auth/logout/')
       .then((res) => {
         alert('로그아웃 되었습니다.');
         signOut({ callbackUrl: '/login' });
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        console.log(error);
       });
   };
 

@@ -4,14 +4,14 @@ import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRefreshToken } from '../hooks/useRefreshToken';
 
-const useAxiosAuth = () => {
+const useCustomAxios = () => {
   const { data: session } = useSession();
   const refreshToken = useRefreshToken();
 
   useEffect(() => {
     const requestIntercept = customAxios.interceptors.request.use(
       (config) => {
-        if (!config.headers['Authorization']) {
+        if (!config.headers['Authorization'] && session?.user?.accessToken) {
           config.headers[
             'Authorization'
           ] = `Bearer ${session?.user?.accessToken}`;
@@ -46,4 +46,4 @@ const useAxiosAuth = () => {
   return customAxios;
 };
 
-export default useAxiosAuth;
+export default useCustomAxios;

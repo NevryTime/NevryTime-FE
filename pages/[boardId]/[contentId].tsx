@@ -11,7 +11,7 @@ import Footer from '@/src/components/Footer';
 import ContentView from '@/src/views/contentView';
 
 /** axios */
-import { contentRequest } from '../../src/axios/BoardAxios';
+import useCustomAxios from '@/src/hooks/useCustomAxios';
 
 /** store */
 import { contentAtom } from '@/src/store/ContentStore';
@@ -48,6 +48,8 @@ type contentDataType = {
 };
 
 function Content() {
+  const axios = useCustomAxios();
+
   const router = useRouter();
   const { contentId } = router.query;
 
@@ -57,17 +59,19 @@ function Content() {
   const [commentList, setCommentList] = useState([]);
 
   useEffect(() => {
-    if (contentId) {
-      contentRequest(Number(contentId))
+    const contentRequest = async () => {
+      await axios
+        .get(`/api/content/${contentId}`)
         .then((res) => {
-          //console.log('res:', res);
           setContentData(res.data.contentResponseDto);
           setCommentList(res.data.commentList);
         })
         .catch((error) => {
           console.log(error);
         });
-    }
+    };
+
+    contentRequest();
   }, [contentId]);
 
   return (
