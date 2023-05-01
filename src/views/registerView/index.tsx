@@ -43,7 +43,6 @@ function registerView() {
 
     signUpRequest(signUpData)
       .then((res) => {
-        console.log(res);
         alert("회원가입이 완료되었습니다.")
         router.push('/login');
       })

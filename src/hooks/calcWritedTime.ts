@@ -3,7 +3,7 @@ import moment from 'moment';
 type contentDataType = {
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
   likes: number;

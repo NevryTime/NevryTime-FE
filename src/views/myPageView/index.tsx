@@ -22,7 +22,6 @@ function myPageView() {
 
     logoutRequest(logoutData)
       .then((res) => {
-        console.log(res);
         alert('로그아웃 되었습니다.');
         signOut({ callbackUrl: '/login' });
       })
