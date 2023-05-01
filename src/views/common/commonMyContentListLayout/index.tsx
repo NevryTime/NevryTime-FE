@@ -21,12 +21,13 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
+import Pagenation from '../pagenationLayout';
 
 /** types */
 type contentDataType = {
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
   likes: number;
@@ -40,7 +41,7 @@ type contentListType = {
   titleName: string;
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
   likes: number;
@@ -69,7 +70,6 @@ function CommonMyContentListLayout({
   }, [contentList]);
 
   const router = useRouter();
-  console.log(router.pathname);
 
   return (
     <>
@@ -84,7 +84,7 @@ function CommonMyContentListLayout({
                     <FontAwesomeIcon icon={faUser} />
                   </div>
                   <div>
-                    <div>{content.show ? content.memberName : '익명'}</div>
+                    <div>{content.show ? content.nickName : '익명'}</div>
                     <div>{writedTime[i]}</div>
                   </div>
                 </ContentInfo>
@@ -108,7 +108,9 @@ function CommonMyContentListLayout({
               </Content>
             ))}
           </ContentListSection>
-          <PageSection>페이지네이션 구간</PageSection>
+          <PageSection>
+            <Pagenation />
+          </PageSection>
         </ContentContainer>
       ) : (
         <ContentContainer>
@@ -121,7 +123,7 @@ function CommonMyContentListLayout({
                     <FontAwesomeIcon icon={faUser} />
                   </div>
                   <div>
-                    <div>{content.show ? content.memberName : '익명'}</div>
+                    <div>{content.show ? content.nickName : '익명'}</div>
                     <div>{writedTime[i]}</div>
                   </div>
                 </ContentInfo>
@@ -144,7 +146,9 @@ function CommonMyContentListLayout({
               </Content>
             ))}
           </ContentListSection>
-          <PageSection>페이지네이션 구간</PageSection>
+          <PageSection>
+            <Pagenation />
+          </PageSection>
         </ContentContainer>
       )}
     </>

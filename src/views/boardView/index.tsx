@@ -32,10 +32,10 @@ import { boardCategoryListAtom } from '../../../src/store/BoardCategoryStore';
 type contentDataType = {
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
-  hearts: number;
+  scraps: number;
   commentCount: number;
   likes: number;
   createAt: string;
@@ -47,10 +47,10 @@ type contentListType = {
   contentList: contentDataType[];
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
-  hearts: number;
+  scraps: number;
   commentCount: number;
   likes: number;
   createAt: string;
@@ -92,6 +92,11 @@ function boardView({ contentList }: contentListType) {
     setWritedTime(times);
   }, [contentList]);
 
+  // 게시글 클릭 시 상세페이지로 이동
+  const onClickContent = (contentId: number) => {
+    router.push(`/${boardId}/${contentId}`);
+  };
+
   return (
     <BoardContainer>
       <BoardTitleSection>{currentBoardCategory}</BoardTitleSection>
@@ -107,12 +112,16 @@ function boardView({ contentList }: contentListType) {
         {contentList && contentList.length > 0 ? (
           <>
             {contentList.map((content, i) => (
-              <Content key={content.id}>
+              <Content
+                key={content.id}
+                onClick={() => onClickContent(content.id)}
+              >
                 <div>{content.title}</div>
                 <div>{content.content}</div>
                 <div>
                   <div>{writedTime[i]}</div>
-                  <div>{content.show ? content.memberName : '익명'}</div>
+                  {/* <div>{content.show ? content.nickName : '익명'}</div> */}
+                  <div>{content.nickName}</div>
                   <Status>
                     {content.image ? (
                       <div>
@@ -122,7 +131,7 @@ function boardView({ contentList }: contentListType) {
                       ''
                     )}
                     <div>
-                      <FontAwesomeIcon icon={faThumbsUp} /> {content.hearts}
+                      <FontAwesomeIcon icon={faThumbsUp} /> {content.scraps}
                     </div>
                     <div>
                       <FontAwesomeIcon icon={faComment} />{' '}

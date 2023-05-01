@@ -7,7 +7,7 @@ import CommonMyContentListLayout from '../common/commonMyContentListLayout';
 type contentListDataType = {
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
   likes: number;
@@ -21,7 +21,7 @@ function MyScrapView() {
     {
       id: 17,
       boardName: '자유게시판',
-      memberName: 'tester1',
+      nickName: 'tester1',
       title: '게시글 생성 테스트1',
       content: '내용은 아무거나 게시판 종류는 자유게시판',
       likes: 0,
@@ -32,7 +32,7 @@ function MyScrapView() {
     {
       id: 16,
       boardName: '자유게시판',
-      memberName: 'tester1',
+      nickName: 'tester1',
       title: '게시글 생성 테스트1',
       content: '내용은 아무거나 게시판 종류는 자유게시판',
       likes: 0,
@@ -43,7 +43,7 @@ function MyScrapView() {
     {
       id: 15,
       boardName: '자유게시판',
-      memberName: 'tester3',
+      nickName: 'tester3',
       title: '게시글 생성 테스트1',
       content: '내용은 아무거나 게시판 종류는 자유게시판',
       likes: 0,
@@ -54,7 +54,7 @@ function MyScrapView() {
     {
       id: 14,
       boardName: '자유게시판',
-      memberName: 'tester3',
+      nickName: 'tester3',
       title: '게시글 생성 테스트1',
       content: '내용은 아무거나 게시판 종류는 자유게시판',
       likes: 0,
@@ -65,7 +65,7 @@ function MyScrapView() {
     {
       id: 13,
       boardName: '자유게시판',
-      memberName: 'tester3',
+      nickName: 'tester3',
       title: '게시글 생성 테스트1',
       content: '내용은 아무거나 게시판 종류는 자유게시판',
       likes: 0,
@@ -81,7 +81,7 @@ function MyScrapView() {
       titleName={'내 스크랩'}
       id={0}
       boardName={''}
-      memberName={''}
+      nickName={''}
       title={''}
       content={''}
       likes={0}

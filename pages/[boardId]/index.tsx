@@ -38,10 +38,10 @@ const PageSection = styled.div`
 type contentListDataType = {
   id: number;
   boardName: string;
-  memberName: string;
+  nickName: string;
   title: string;
   content: string;
-  hearts: number;
+  scraps: number;
   commentCount: number;
   likes: number;
   createAt: string;
@@ -66,7 +66,6 @@ function BoardPage() {
     if (boardId) {
       boardRequest(Number(boardId), currentPage, 20)
         .then((res) => {
-          console.log(res.data);
           setTotalPageCount(res.data.contentTotalPages);
           setContentList(res.data.contentPage);
         })
@@ -85,10 +84,10 @@ function BoardPage() {
           contentList={contentList}
           id={0}
           boardName={''}
-          memberName={''}
+          nickName={''}
           title={''}
           content={''}
-          hearts={0}
+          scraps={0}
           commentCount={0}
           likes={0}
           createAt={''}
