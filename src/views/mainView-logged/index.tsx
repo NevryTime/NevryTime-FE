@@ -53,17 +53,17 @@ function mainView() {
   // 로그인 한 유저의 세션 데이터
   const { data: session } = useSession();
 
-  const [board1, setBoard1] = useState([]);
-  const [board2, setBoard2] = useState([]);
-  const [board3, setBoard3] = useState([]);
-  const [board4, setBoard4] = useState([]);
-  const [board5, setBoard5] = useState([]);
-  const [board6, setBoard6] = useState([]);
-  const [board7, setBoard7] = useState([]);
-  const [board8, setBoard8] = useState([]);
-  const [board9, setBoard9] = useState([]);
-  const [board10, setBoard10] = useState([]);
-  const [board11, setBoard11] = useState([]);
+  const [board1, setBoard1] = useState([]); // 자유
+  const [board2, setBoard2] = useState([]); // 비밀
+  const [board3, setBoard3] = useState([]); // 졸업
+  const [board4, setBoard4] = useState([]); // 새내기
+  const [board5, setBoard5] = useState([]); // 시사
+  const [board6, setBoard6] = useState([]); // 장터
+  const [board7, setBoard7] = useState([]); // 정보
+  const [board8, setBoard8] = useState([]); // 홍보
+  const [board9, setBoard9] = useState([]); // 동아리
+  const [board10, setBoard10] = useState([]); // 취업
+  const [board11, setBoard11] = useState([]); // 대학원
 
   // 게시판 11개의 상위 게시글 4개씩 가져오기
   useEffect(() => {
@@ -141,7 +141,7 @@ function mainView() {
 
     boardRequest(10, 1, 4)
       .then((res) => {
-        setBoard9(res.data.contentPage);
+        setBoard10(res.data.contentPage);
       })
       .catch((error) => {
         console.log(error);
@@ -149,7 +149,7 @@ function mainView() {
 
     boardRequest(11, 1, 4)
       .then((res) => {
-        setBoard9(res.data.contentPage);
+        setBoard11(res.data.contentPage);
       })
       .catch((error) => {
         console.log(error);
@@ -279,31 +279,31 @@ function mainView() {
           </MidContentBox>
           <MidContentBox>
             <div>취업 진로</div>
+            {board10 &&
+              board10.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
+          </MidContentBox>
+          <MidContentBox>
+            <div>대학원&대학원생 게시판</div>
+            {board11 &&
+              board11.map((content: contentDataType) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
+          </MidContentBox>
+          <MidContentBox>
+            <div>홍보게시판</div>
             {board8 &&
               board8.map((content: contentDataType) => (
                 <div key={content.id}>{content.title}</div>
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>대학원&대학원생 게시판</div>
+            <div>동아리 학회</div>
             {board9 &&
               board9.map((content: contentDataType) => (
                 <div key={content.id}>{content.title}</div>
               ))}
-          </MidContentBox>
-          <MidContentBox>
-            <div>홍보게시판</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
-          </MidContentBox>
-          <MidContentBox>
-            <div>동아리 학회</div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
           </MidContentBox>
         </MidSection>
 
