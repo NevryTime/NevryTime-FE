@@ -108,9 +108,9 @@ function CommonMyContentListLayout({
               </Content>
             ))}
           </ContentListSection>
-          <PageSection>
+          {/* <PageSection>
             <Pagenation />
-          </PageSection>
+          </PageSection> */}
         </ContentContainer>
       ) : (
         <ContentContainer>
@@ -146,9 +146,9 @@ function CommonMyContentListLayout({
               </Content>
             ))}
           </ContentListSection>
-          <PageSection>
+          {/* <PageSection>
             <Pagenation />
-          </PageSection>
+          </PageSection> */}
         </ContentContainer>
       )}
     </>
