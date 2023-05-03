@@ -257,7 +257,7 @@ function mainView() {
 
         <MidSection>
           <MidContentBox>
-            <div>자유게시판</div>
+            <Link href={`/1`}>자유게시판</Link>
             {board1 &&
               board1.map((content: boardContentType) => (
                 <Link
@@ -269,7 +269,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>비밀게시판</div>
+            <Link href={`/2`}>비밀게시판</Link>
             {board2 &&
               board2.map((content: boardContentType) => (
                 <Link
@@ -281,7 +281,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>졸업생게시판</div>
+            <Link href={`/3`}>졸업생게시판</Link>
             {board3 &&
               board3.map((content: boardContentType) => (
                 <Link
@@ -293,7 +293,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>새내기게시판</div>
+            <Link href={`/4`}>새내기게시판</Link>
             {board4 &&
               board4.map((content: boardContentType) => (
                 <Link
@@ -305,7 +305,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>시사 이슈</div>
+            <Link href={`/5`}>시사 이슈</Link>
             {board5 &&
               board5.map((content: boardContentType) => (
                 <Link
@@ -317,7 +317,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>장터게시판</div>
+            <Link href={`/6`}>장터게시판</Link>
             {board6 &&
               board6.map((content: boardContentType) => (
                 <Link
@@ -329,7 +329,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>정보게시판</div>
+            <Link href={`/7`}>정보게시판</Link>
             {board7 &&
               board7.map((content: boardContentType) => (
                 <Link
@@ -341,7 +341,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>취업 진로</div>
+            <Link href={`/10`}>취업 진로</Link>
             {board10 &&
               board10.map((content: boardContentType) => (
                 <Link
@@ -353,7 +353,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>대학원&대학원생 게시판</div>
+            <Link href={`/11`}>대학원&대학원생 게시판</Link>
             {board11 &&
               board11.map((content: boardContentType) => (
                 <Link
@@ -365,7 +365,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>홍보게시판</div>
+            <Link href={`/8`}>홍보게시판</Link>
             {board8 &&
               board8.map((content: boardContentType) => (
                 <Link
@@ -377,7 +377,7 @@ function mainView() {
               ))}
           </MidContentBox>
           <MidContentBox>
-            <div>동아리 학회</div>
+            <Link href={`/9`}>동아리 학회</Link>
             {board9 &&
               board9.map((content: boardContentType) => (
                 <Link

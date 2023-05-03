@@ -119,7 +119,8 @@ export const MidContentBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > div, a {
+  & > div,
+  a {
     height: 100%;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
     padding: 10px;
@@ -138,7 +139,7 @@ export const MidContentBox = styled.div`
 `;
 
 export const RightContentBox = styled.div`
-  height: 190px;
+  //height: 190px;
   margin: 10px 5px;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   background: ${({ theme }) => theme.colors.light_gray1};
@@ -186,7 +187,7 @@ export const PopularContentBox = styled.div`
     :nth-child(1) {
       color: #3744a5;
       font-weight: ${({ theme }) => theme.getFontWeight('SB')};
-      border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
+      //border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
     }
   }
 `;
