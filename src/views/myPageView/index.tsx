@@ -11,9 +11,13 @@ import Link from 'next/link';
 /** axios */
 import useCustomAxios from '@/src/hooks/useCustomAxios';
 
+/** store */
+import { useRecoilValue } from 'recoil';
+import { userInfoAtom } from '@/src/store/UserInfoStore';
+
 function myPageView() {
   const axios = useCustomAxios();
-  const { data: session } = useSession();
+  const userInfo = useRecoilValue(userInfoAtom);
 
   // 로그아웃 요청
   const onClickLogout = async () => {
@@ -47,8 +51,8 @@ function myPageView() {
             <FontAwesomeIcon icon={faUser} />
           </div>
           <div>
-            <div>아이디</div>
-            <div>닉네임</div>
+            <div>{userInfo.name}</div>
+            <div>{userInfo.nickName}</div>
             <div>순천향대</div>
           </div>
         </div>

@@ -32,6 +32,10 @@ import { useRouter } from 'next/router';
 /** axios */
 import useCustomAxios from '../../hooks/useCustomAxios';
 
+/** store */
+import { useRecoilState } from 'recoil';
+import { userInfoAtom } from '@/src/store/UserInfoStore';
+
 /** types */
 type boardContentType = {
   boardId: number;
@@ -44,6 +48,24 @@ function mainView() {
   const axios = useCustomAxios();
   // 로그인 한 유저의 세션 데이터
   const { data: session } = useSession();
+
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+
+  useEffect(() => {
+    const userInfoRequest = async () => {
+      await axios
+        .get(`/api/member/me`)
+        .then((res) => {
+          console.log(res.data);
+          setUserInfo({ name: res.data.name, nickName: res.data.nickName });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    userInfoRequest();
+  }, []);
 
   const [allBoardContents, setAllBoardContents] = useState([]);
   const [board1, setBoard1] = useState([]); // 자유
@@ -88,44 +110,84 @@ function mainView() {
     const newBoard10: boardContentType[] = [];
     const newBoard11: boardContentType[] = [];
 
-    allBoardContents.forEach((content) => {
-      if (content.boardId === 1) {
-        newBoard1.push(content);
-      } else if (content.boardId === 2) {
-        newBoard2.push(content);
-      } else if (content.boardId === 3) {
-        newBoard3.push(content);
-      } else if (content.boardId === 4) {
-        newBoard4.push(content);
-      } else if (content.boardId === 5) {
-        newBoard5.push(content);
-      } else if (content.boardId === 6) {
-        newBoard6.push(content);
-      } else if (content.boardId === 7) {
-        newBoard7.push(content);
-      } else if (content.boardId === 8) {
-        newBoard8.push(content);
-      } else if (content.boardId === 9) {
-        newBoard9.push(content);
-      } else if (content.boardId === 10) {
-        newBoard10.push(content);
-      } else if (content.boardId === 11) {
-        newBoard11.push(content);
-      }
+    if (allBoardContents) {
+      allBoardContents.forEach((content) => {
+        if (content.boardId === 1) {
+          newBoard1.push(content);
+        } else if (content.boardId === 2) {
+          newBoard2.push(content);
+        } else if (content.boardId === 3) {
+          newBoard3.push(content);
+        } else if (content.boardId === 4) {
+          newBoard4.push(content);
+        } else if (content.boardId === 5) {
+          newBoard5.push(content);
+        } else if (content.boardId === 6) {
+          newBoard6.push(content);
+        } else if (content.boardId === 7) {
+          newBoard7.push(content);
+        } else if (content.boardId === 8) {
+          newBoard8.push(content);
+        } else if (content.boardId === 9) {
+          newBoard9.push(content);
+        } else if (content.boardId === 10) {
+          newBoard10.push(content);
+        } else if (content.boardId === 11) {
+          newBoard11.push(content);
+        }
 
-      setBoard1(newBoard1);
-      setBoard2(newBoard2);
-      setBoard3(newBoard3);
-      setBoard4(newBoard4);
-      setBoard5(newBoard5);
-      setBoard6(newBoard6);
-      setBoard7(newBoard7);
-      setBoard8(newBoard8);
-      setBoard9(newBoard9);
-      setBoard10(newBoard10);
-      setBoard11(newBoard11);
-    });
+        setBoard1(newBoard1);
+        setBoard2(newBoard2);
+        setBoard3(newBoard3);
+        setBoard4(newBoard4);
+        setBoard5(newBoard5);
+        setBoard6(newBoard6);
+        setBoard7(newBoard7);
+        setBoard8(newBoard8);
+        setBoard9(newBoard9);
+        setBoard10(newBoard10);
+        setBoard11(newBoard11);
+      });
+    }
   }, [allBoardContents]);
+
+  // 실시간 인기글
+  const [popularContents, setPopularContents] = useState([]);
+
+  useEffect(() => {
+    const popularContents = async () => {
+      await axios
+        .get(`/api/content/popular`)
+        .then((res) => {
+          console.log(res.data);
+          setPopularContents(res.data.contentList);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    popularContents();
+  }, []);
+
+  // HOT 게시물
+  const [hotContents, setHotContents] = useState([]);
+
+  useEffect(() => {
+    const hotContents = async () => {
+      await axios
+        .get(`/api/content/popular`)
+        .then((res) => {
+          console.log(res.data);
+          setHotContents(res.data.contentList);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    hotContents();
+  }, []);
 
   // 로그아웃 요청
   const onClickLogout = async () => {
@@ -151,8 +213,8 @@ function mainView() {
         <LeftSection>
           <MyInfoBox>
             <FontAwesomeIcon icon={faUser} />
-            <div>닉네임</div>
-            <div>아이디</div>
+            <div>{userInfo && userInfo.name}</div>
+            <div>{userInfo && userInfo.nickName}</div>
             <div>
               <Button
                 width={67}
@@ -336,42 +398,33 @@ function mainView() {
           />
           <PopularContentBox>
             <div>실시간 인기 글</div>
-            <PopularContent>
-              <div>제목</div>
-              <div>내용</div>
-              <div>
-                <div>게시판</div>
-                <div>
-                  <FontAwesomeIcon icon={faThumbsUp} />3
-                </div>
-                <div>
-                  <FontAwesomeIcon icon={faComment} />3
-                </div>
-              </div>
-            </PopularContent>
-            <PopularContent>
-              <div>제목</div>
-              <div>내용</div>
-              <div>
-                <div>게시판</div>
-                <div>
-                  <FontAwesomeIcon icon={faThumbsUp} />3
-                </div>
-                <div>
-                  <FontAwesomeIcon icon={faComment} />3
-                </div>
-              </div>
-            </PopularContent>
+            {popularContents &&
+              popularContents.map((content) => (
+                <PopularContent key={content.id}>
+                  <div>{content.title}</div>
+                  <div>{content.content}</div>
+                  <div>
+                    <div>{content.boardName}</div>
+                    <div>
+                      <FontAwesomeIcon icon={faThumbsUp} /> {content.likes}
+                    </div>
+                    <div>
+                      <FontAwesomeIcon icon={faComment} />{' '}
+                      {content.commentCount}
+                    </div>
+                  </div>
+                </PopularContent>
+              ))}
           </PopularContentBox>
           <RightContentBox>
             <div>
               <p>HOT 게시물</p>
               <p>더 보기</p>
             </div>
-            <div>게시글1</div>
-            <div>게시글2</div>
-            <div>게시글3</div>
-            <div>게시글4</div>
+            {hotContents &&
+              hotContents.map((content) => (
+                <div key={content.id}>{content.title}</div>
+              ))}
           </RightContentBox>
           <BestContent>
             <div>
