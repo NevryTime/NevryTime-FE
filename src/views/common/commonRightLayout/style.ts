@@ -9,7 +9,7 @@ export const RightSection = styled.div`
 `;
 
 export const RightContentBox = styled.div`
-  height: 190px;
+  //height: 190px;
   margin: 10px 5px;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   background: ${({ theme }) => theme.colors.light_gray1};
@@ -57,7 +57,7 @@ export const PopularContentBox = styled.div`
     :nth-child(1) {
       color: #3744a5;
       font-weight: ${({ theme }) => theme.getFontWeight('SB')};
-      border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
+      //border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
     }
   }
 `;
@@ -103,12 +103,12 @@ export const PopularContent = styled.div`
         }
         :nth-child(3) {
           font-size: 12px;
-          color:${({ theme }) => theme.colors.blue};
+          color: ${({ theme }) => theme.colors.blue};
 
           & > svg,
           img {
             width: 10px;
-            color:${({ theme }) => theme.colors.blue};
+            color: ${({ theme }) => theme.colors.blue};
             margin-right: 3px;
           }
         }
