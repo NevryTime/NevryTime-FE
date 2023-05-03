@@ -95,7 +95,7 @@ function loginView() {
       </LoginButtonSection>
       <LoginOptionSection>
         <div>
-          <input type="checkbox" checked={false} />
+          <input type="checkbox" defaultChecked={false} />
           아이디 저장
         </div>
         <Link href="/find-account">아이디/비밀번호 찾기</Link>
