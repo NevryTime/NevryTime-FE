@@ -124,12 +124,16 @@ function contentView({ contentData, commentList }: contentType) {
   // 게시글 작성 시간 계산
   const [writedTime, setWritedTime] = useState('');
   useEffect(() => {
-    setWritedTime(calcWritedTime(contentData));
+    if (contentData) {
+      setWritedTime(calcWritedTime(contentData));
+    }
   }, [contentData]);
 
   return (
     <ContentContainer>
-      <ContentTitleSection>{contentData.boardName}</ContentTitleSection>
+      <ContentTitleSection>
+        {contentData && contentData.boardName}
+      </ContentTitleSection>
       <ContentSection>
         <ContentInfo>
           <div>
@@ -137,31 +141,34 @@ function contentView({ contentData, commentList }: contentType) {
           </div>
           <div>
             {/* <div>{contentData.show ? contentData.nickName : '익명'}</div> */}
-            <div>{contentData.nickName}</div>
+            <div>{contentData && contentData.nickName}</div>
             <div>{writedTime}</div>
           </div>
         </ContentInfo>
-        <ContentTitle>{contentData.title}</ContentTitle>
+        <ContentTitle>{contentData && contentData.title}</ContentTitle>
         <Content>
-          {contentData.content.split('\n').map((line, i) => {
-            return (
-              <span key={i}>
-                {line}
-                <br />
-              </span>
-            );
-          })}
+          {contentData &&
+            contentData.content.split('\n').map((line, i) => {
+              return (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              );
+            })}
         </Content>
         <CountStateBox>
           <div>
             <FontAwesomeIcon icon={faThumbsUp} />
-            {contentData.likes}
+            {contentData && contentData.likes}
           </div>
           <div>
-            <FontAwesomeIcon icon={faComment} /> {contentData.commentCount}
+            <FontAwesomeIcon icon={faComment} />{' '}
+            {contentData && contentData.commentCount}
           </div>
           <div>
-            <FontAwesomeIcon icon={faStar} /> {contentData.scraps}
+            <FontAwesomeIcon icon={faStar} />{' '}
+            {contentData && contentData.scraps}
           </div>
         </CountStateBox>
         <StateButtonBox>
