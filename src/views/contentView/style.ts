@@ -72,6 +72,7 @@ export const Content = styled.div`
   font-size: 14px;
   margin-bottom: 15px;
   padding: 0 15px;
+  line-height: 1.3;
 `;
 
 export const CountStateBox = styled.div`
@@ -92,10 +93,10 @@ export const CountStateBox = styled.div`
       color: ${({ theme }) => theme.colors.red};
     }
     :nth-child(2) {
-      color:${({ theme }) => theme.colors.blue};
+      color: ${({ theme }) => theme.colors.blue};
     }
     :nth-child(3) {
-      color:${({ theme }) => theme.colors.yellow};
+      color: ${({ theme }) => theme.colors.yellow};
     }
   }
 `;

@@ -142,7 +142,16 @@ function contentView({ contentData, commentList }: contentType) {
           </div>
         </ContentInfo>
         <ContentTitle>{contentData.title}</ContentTitle>
-        <Content>{contentData.content}</Content>
+        <Content>
+          {contentData.content.split('\n').map((line, i) => {
+            return (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            );
+          })}
+        </Content>
         <CountStateBox>
           <div>
             <FontAwesomeIcon icon={faThumbsUp} />
@@ -233,7 +242,7 @@ function contentView({ contentData, commentList }: contentType) {
           <InputBox width={780} height={40} placeholder={'댓글을 입력하세요'} />
           <CommentOptions>
             <div>
-              <input type="checkbox" checked={false} /> 익명
+              <input type="checkbox" defaultChecked={false} /> 익명
             </div>
             <div>
               <FontAwesomeIcon icon={faPencil} />
