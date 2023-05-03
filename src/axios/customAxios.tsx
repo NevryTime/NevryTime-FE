@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://port-0-nevrytime-be-1maxx2algrqkxj3.sel3.cloudtype.app'
+const BASE_URL = 'http://3.37.153.9:8080';
 
 export const customAxios = axios.create({
   baseURL: BASE_URL,
