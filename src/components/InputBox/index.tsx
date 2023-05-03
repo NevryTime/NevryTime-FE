@@ -9,11 +9,21 @@ interface InputBoxType {
   borderRadius?: number;
   placeholder: string;
   onChange?: React.ChangeEventHandler;
+  onClick?: () => void;
 }
 
 export const InputBox = (props: InputBoxType) => {
-  const { name, id, type, width, height, placeholder, onChange, borderRadius } =
-    props;
+  const {
+    name,
+    id,
+    type,
+    width,
+    height,
+    placeholder,
+    onChange,
+    onClick,
+    borderRadius,
+  } = props;
 
   return (
     <StyledInputBox
@@ -24,6 +34,7 @@ export const InputBox = (props: InputBoxType) => {
       height={height}
       placeholder={placeholder}
       onChange={onChange}
+      onClick={onClick}
       borderRadius={borderRadius ? borderRadius : 0}
     ></StyledInputBox>
   );
