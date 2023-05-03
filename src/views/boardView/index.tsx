@@ -73,7 +73,9 @@ function boardView({ contentList }: contentListType) {
         (board) => board.id === Number(boardId),
       );
 
-      setCurrentBoardCategory(boardCategory.name);
+      if (boardCategory) {
+        setCurrentBoardCategory(boardCategory.name);
+      }
     }
   }, [contentList]);
 
