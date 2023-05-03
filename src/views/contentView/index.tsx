@@ -148,7 +148,7 @@ function contentView({ contentData, commentList }: contentType) {
         <ContentTitle>{contentData && contentData.title}</ContentTitle>
         <Content>
           {contentData &&
-            contentData.content.split('\n').map((line, i) => {
+            contentData.content?.split('\n').map((line, i) => {
               return (
                 <span key={i}>
                   {line}
