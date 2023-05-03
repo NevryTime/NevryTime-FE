@@ -18,26 +18,26 @@ export const authOptions: AuthOptions = {
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
 
-        const res = await fetch(
-          'https://port-0-nevrytime-be-1maxx2algrqkxj3.sel3.cloudtype.app/auth/login',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: credentials?.name,
-              password: credentials?.password,
-            }),
+        const res = await fetch('http://3.37.153.9:8080/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        );
+          body: JSON.stringify({
+            name: credentials?.name,
+            password: credentials?.password,
+          }),
+        });
         const user = await res.json();
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
-          return user;
+          if (user.status === 401) {
+            alert('아이디 혹은 비밀번호가 다릅니다.');
+          } else {
+            return user;
+          }
         } else {
-          alert('아이디 혹은 비밀번호가 다릅니다.');
           // If you return null then an error will be displayed advising the user to check their details.
           return null;
 
@@ -54,7 +54,8 @@ export const authOptions: AuthOptions = {
     strategy: 'jwt',
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    // maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 30 * 60,
 
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
@@ -75,7 +76,6 @@ export const authOptions: AuthOptions = {
     },
     async session({ session, token, user }) {
       session.user = token as any;
-
       return session;
     },
   },

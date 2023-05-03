@@ -42,12 +42,20 @@ function loginView() {
   };
 
   const onClickLoginRequest = async () => {
-    await signIn('credentials', {
+    const res = await signIn('credentials', {
       name: name,
       password: password,
-      redirect: true,
-      callbackUrl: '/',
+      redirect: false,
     });
+
+    console.log(res);
+
+    if (res.status === 401) {
+      alert('아이디 혹은 비밀번호가 일치하지 않습니다!');
+      router.reload();
+    } else {
+      router.push('/');
+    }
   };
 
   return (
