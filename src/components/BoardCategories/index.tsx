@@ -54,19 +54,21 @@ function BoardCategories() {
     const graduateBoards: BoardType[] = [];
     const etcBoards: BoardType[] = [];
 
-    boards.forEach((board) => {
-      if (board.boardType === 'BASIC') {
-        basicBoards.push(board);
-      } else if (board.boardType === 'GRADUATE') {
-        graduateBoards.push(board);
-      } else if (board.boardType === 'ETC') {
-        etcBoards.push(board);
-      }
-    });
+    if (boards) {
+      boards.forEach((board) => {
+        if (board.boardType === 'BASIC') {
+          basicBoards.push(board);
+        } else if (board.boardType === 'GRADUATE') {
+          graduateBoards.push(board);
+        } else if (board.boardType === 'ETC') {
+          etcBoards.push(board);
+        }
+      });
 
-    setBasicBoards(basicBoards);
-    setGraduateBoards(graduateBoards);
-    setEtcBoards(etcBoards);
+      setBasicBoards(basicBoards);
+      setGraduateBoards(graduateBoards);
+      setEtcBoards(etcBoards);
+    }
   }, [boards]);
 
   // 현재 위치한 게시판
