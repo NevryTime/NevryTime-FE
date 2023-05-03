@@ -24,6 +24,7 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import Pagenation from '../common/pagenationLayout';
+import TextEditor from '../../components/TextEditor';
 
 /** store */
 import { boardCategoryListAtom } from '../../../src/store/BoardCategoryStore';
@@ -58,13 +59,20 @@ type contentListType = {
   show: boolean;
 };
 
+type boardCategoryType = {
+  id: number;
+  name: string;
+  boardType: string;
+};
+
 function boardView({ contentList }: contentListType) {
   const router = useRouter();
   const { boardId } = router.query;
 
   // 해당 게시판 정보 전역상태 가져오기
   const boardCategoryValue = useRecoilValue(boardCategoryListAtom);
-  const [currentBoardCategory, setCurrentBoardCategory] = useState([]);
+  const [currentBoardCategory, setCurrentBoardCategory] =
+    useState<boardCategoryType>({ id: 1, name: '', boardType: '' });
 
   // 현재 위치한 게시판이 무엇인지 판단
   useEffect(() => {
@@ -74,7 +82,7 @@ function boardView({ contentList }: contentListType) {
       );
 
       if (boardCategory) {
-        setCurrentBoardCategory(boardCategory.name);
+        setCurrentBoardCategory(boardCategory);
       }
     }
   }, [contentList]);
@@ -99,16 +107,29 @@ function boardView({ contentList }: contentListType) {
     router.push(`/${boardId}/${contentId}`);
   };
 
+  // 글 쓰기 영역 클릭 시 텍스트 에디터로 변환
+  const [openTextArea, setOpenTextArea] = useState(false);
+  const onClickTextArea = () => {
+    setOpenTextArea(true);
+  };
+
   return (
     <BoardContainer>
-      <BoardTitleSection>{currentBoardCategory}</BoardTitleSection>
+      <BoardTitleSection>{currentBoardCategory.name}</BoardTitleSection>
       {/* 클릭하면 글 작성하는 영역 열리게 */}
       <WriteSection>
-        <InputBox
-          width={780}
-          height={50}
-          placeholder={'새 글을 작성해주세요!'}
-        />
+        {openTextArea ? (
+          <TextEditor boardId={currentBoardCategory.id} setOpenTextArea={setOpenTextArea}/>
+        ) : (
+          <InputBox
+            width={780}
+            height={50}
+            placeholder={'새 글을 작성해주세요!'}
+            onClick={() => {
+              onClickTextArea();
+            }}
+          />
+        )}
       </WriteSection>
       <ContentListSection>
         {contentList && contentList.length > 0 ? (

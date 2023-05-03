@@ -20,7 +20,7 @@ export const WriteSection = styled.div`
     background: ${({ theme }) => theme.colors.light_gray1};
     border: 2px solid ${({ theme }) => theme.colors.gray1};
     ::placeholder {
-      color: ${({ theme }) => theme.colors.gray3};
+      color: ${({ theme }) => theme.colors.gray1};
     }
   }
 `;
