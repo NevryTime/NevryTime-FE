@@ -12,14 +12,9 @@ export const useRefreshToken = () => {
       refreshToken: session?.user.refreshToken,
     });
 
-    // const refreshData = {
-    //   accessToken: session.user.accessToken,
-    //   refreshToken: session.user.refreshToken,
-    // };
-
-    // const res = refreshRequest(refreshData);
-
-    console.log('refresh:', res);
+    if (res) {
+      console.log('refresh:', res);
+    }
 
     if (session) session.user.accessToken = res.data.accessToken;
     else signIn();
