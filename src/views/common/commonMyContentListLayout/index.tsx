@@ -77,36 +77,42 @@ function CommonMyContentListLayout({
         <ContentContainer>
           <ContentTitleSection>{titleName}</ContentTitleSection>
           <ContentListSection>
-            {contentList.map((content, i) => (
-              <Content key={content.id}>
-                <ContentInfo>
-                  <div>
-                    <FontAwesomeIcon icon={faUser} />
-                  </div>
-                  <div>
-                    <div>{content.show ? content.nickName : '익명'}</div>
-                    <div>{writedTime[i]}</div>
-                  </div>
-                </ContentInfo>
-                <div>{content.title}</div>
-                <div>{content.content}</div>
-                <ContentStatusBox>
-                  <div>{content.boardName}</div>
-                  <Status>
-                    <div>스크랩 취소</div>
-                    <div>
-                      <FontAwesomeIcon icon={faImage} /> 1
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faThumbsUp} /> 3
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faComment} /> 3
-                    </div>
-                  </Status>
-                </ContentStatusBox>
-              </Content>
-            ))}
+            {contentList && contentList.length > 0 ? (
+              <>
+                {contentList.map((content, i) => (
+                  <Content key={content.id}>
+                    <ContentInfo>
+                      <div>
+                        <FontAwesomeIcon icon={faUser} />
+                      </div>
+                      <div>
+                        <div>{content.show ? content.nickName : '익명'}</div>
+                        <div>{writedTime[i]}</div>
+                      </div>
+                    </ContentInfo>
+                    <div>{content.title}</div>
+                    <div>{content.content}</div>
+                    <ContentStatusBox>
+                      <div>{content.boardName}</div>
+                      <Status>
+                        <div>스크랩 취소</div>
+                        <div>
+                          <FontAwesomeIcon icon={faImage} /> 1
+                        </div>
+                        <div>
+                          <FontAwesomeIcon icon={faThumbsUp} /> 3
+                        </div>
+                        <div>
+                          <FontAwesomeIcon icon={faComment} /> 3
+                        </div>
+                      </Status>
+                    </ContentStatusBox>
+                  </Content>
+                ))}
+              </>
+            ) : (
+              <Content>스크랩한 글이 없습니다.</Content>
+            )}
           </ContentListSection>
           {/* <PageSection>
             <Pagenation />
@@ -116,35 +122,41 @@ function CommonMyContentListLayout({
         <ContentContainer>
           <ContentTitleSection>{titleName}</ContentTitleSection>
           <ContentListSection>
-            {contentList.map((content, i) => (
-              <Content key={content.id}>
-                <ContentInfo>
-                  <div>
-                    <FontAwesomeIcon icon={faUser} />
-                  </div>
-                  <div>
-                    <div>{content.show ? content.nickName : '익명'}</div>
-                    <div>{writedTime[i]}</div>
-                  </div>
-                </ContentInfo>
-                <div>{content.title}</div>
-                <div>{content.content}</div>
-                <ContentStatusBox>
-                  <div>{content.boardName}</div>
-                  <Status>
-                    <div>
-                      <FontAwesomeIcon icon={faImage} /> 1
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faThumbsUp} /> 3
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faComment} /> 3
-                    </div>
-                  </Status>
-                </ContentStatusBox>
-              </Content>
-            ))}
+            {contentList && contentList.length > 0 ? (
+              <>
+                {contentList.map((content, i) => (
+                  <Content key={content.id}>
+                    <ContentInfo>
+                      <div>
+                        <FontAwesomeIcon icon={faUser} />
+                      </div>
+                      <div>
+                        <div>{content.show ? content.nickName : '익명'}</div>
+                        <div>{writedTime[i]}</div>
+                      </div>
+                    </ContentInfo>
+                    <div>{content.title}</div>
+                    <div>{content.content}</div>
+                    <ContentStatusBox>
+                      <div>{content.boardName}</div>
+                      <Status>
+                        <div>
+                          <FontAwesomeIcon icon={faImage} /> 1
+                        </div>
+                        <div>
+                          <FontAwesomeIcon icon={faThumbsUp} /> 3
+                        </div>
+                        <div>
+                          <FontAwesomeIcon icon={faComment} /> 3
+                        </div>
+                      </Status>
+                    </ContentStatusBox>
+                  </Content>
+                ))}
+              </>
+            ) : (
+              <Content>작성한 글이 없습니다.</Content>
+            )}
           </ContentListSection>
           {/* <PageSection>
             <Pagenation />
