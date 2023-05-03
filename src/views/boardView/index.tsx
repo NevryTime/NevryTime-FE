@@ -119,7 +119,10 @@ function boardView({ contentList }: contentListType) {
       {/* 클릭하면 글 작성하는 영역 열리게 */}
       <WriteSection>
         {openTextArea ? (
-          <TextEditor boardId={currentBoardCategory.id} setOpenTextArea={setOpenTextArea}/>
+          <TextEditor
+            boardId={Number(boardId)}
+            setOpenTextArea={setOpenTextArea}
+          />
         ) : (
           <InputBox
             width={780}
